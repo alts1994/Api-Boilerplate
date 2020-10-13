@@ -1,12 +1,53 @@
-GET http://localhost:3000/subscribers
+GET http://localhost:3000/records
 
 ###
-POST http://localhost:3000/subscribers
+POST http://localhost:3000/records
 Content-Type: application/json
 
 
 {
-  "name": "Andrew2222",
-  "subscribedChannel": "Lee's Channel"
+  "name": "Initial"
 }
 
+### 
+GET http://localhost:3000/records/5f8100c5990b934bea47d974
+
+###
+PATCH http://localhost:3000/records/5f8100c5990b934bea47d974
+Content-Type: application/json
+
+
+{
+  "name": "Modified"
+}
+
+### 
+DELETE  http://localhost:3000/records/5f80f6e9a1c18d4497a998aa
+
+
+###
+
+POST http://localhost:3000/user/
+Content-Type: application/json
+
+{
+  "email": "yyqq@email.com",
+  "password": "ppp"
+}
+
+###
+GET http://localhost:3000/user/5f814362d38d7458e85e8987
+
+###
+
+
+PATCH http://localhost:3000/user/5f814362d38d7458e85e8987
+Content-Type: application/json
+
+{
+  "email": "NEWEMAIL3@qq.com",
+  "password": "xynzeee"
+}
+
+###
+DELETE http://localhost:3000/user/5f813667a1c18d4497a998ab
