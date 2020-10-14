@@ -4,10 +4,9 @@ const app = express();
 const mongoose = require('mongoose');
 
 const helmet = require('helmet');
-
 app.use(helmet());
 
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 const db = mongoose.connection;
 
 db.on('error', (error) => console.error(error));
@@ -20,5 +19,8 @@ app.use('/records', recordsRouter);
 
 const userRouter = require('./routes/user');
 app.use('/user', userRouter)
+
+const authRouter = require('./routes/auth');
+app.use('/auth', authRouter)
 
 app.listen(3000, () => console.log('listening on port 3000'));
