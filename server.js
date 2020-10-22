@@ -1,26 +1,6 @@
-require('dotenv').config();
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
+const app = require("./config/express");
 
-const helmet = require('helmet');
-app.use(helmet());
-
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
-const db = mongoose.connection;
-
-db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('Connected to database'));
-
-app.use(express.json());
-
-const recordsRouter = require('./routes/records');
-app.use('/records', recordsRouter);
-
-const userRouter = require('./routes/user');
-app.use('/user', userRouter)
-
-const authRouter = require('./routes/auth');
-app.use('/auth', authRouter)
-
-app.listen(3000, () => console.log('listening on port 3000'));
+const port = process.env.PORT || 3000;
+const server = app.listen(port, () => {
+    console.log(`Listening on port ${port} \nEnv: ${process.env.NODE_ENV}`);
+});
