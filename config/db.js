@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 let dbName;
 switch (process.env.NODE_ENV) {
     case "test":
@@ -12,8 +11,6 @@ switch (process.env.NODE_ENV) {
     default:
         dbName = "devdb";
 }
-
-
 
 // Assume default mongoDB local port and host if none provided
 const dbAddress = process.env.DB_HOST || "127.0.0.1";
@@ -28,15 +25,15 @@ if (process.env.DB_AUTH === "true") {
     options["pass"] = process.env.DB_PASS;
 }
 
-// if no "ECONNREFUSED" in error message something is wrong with your db infra
+// if no "ECONNREFUSED" in error message something is wrong with db infra
 mongoose.connect(`mongodb://${dbAddress}:${dbPort}/${dbName}`, options).catch(err => {
-    if (err.message.indexOf("ECONNREFUSED") !== -1) {
-        console.error("Error: Server unable to reach MongoDB. Is it running?");
-        process.exit(1);
-    } else {
-        throw err;
-    }
-})
-
+        if (err.message.indexOf("ECONNREFUSED") !== -1) {
+            console.error("Error: Server unable to reach MongoDB. Is it running?");
+            process.exit(1);
+        } else {
+            throw err;
+        }
+    })
+    
 // If connection successful, acknoledge in console
 mongoose.connection.once('open', () => console.log('DB Connection successful'));

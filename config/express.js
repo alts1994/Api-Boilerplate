@@ -1,7 +1,8 @@
 const dotenv = require("dotenv").config();
-const express = require("express");
 const db = require("./db");
 const helmet = require('helmet');
+const container = require('./configContainer');
+const express = require('express');
 
 const app = express();
 
@@ -11,7 +12,15 @@ app.enable("trust proxy");
 app.use(helmet());
 app.use(express.json());
 
-const recordsRouter = require('../routes/records');
-app.use('/records', recordsRouter);
+
+const recordRouter = container.resolve('recordRouter')
+app.use('/records', recordRouter);
+
+const userRouter = container.resolve('userRouter')
+app.use('/user', userRouter);
+
+const authRouter = container.resolve('authRouter');
+app.use('/auth', authRouter);
+
 
 module.exports = app;

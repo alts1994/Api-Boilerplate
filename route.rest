@@ -1,19 +1,22 @@
 GET http://localhost:3000/records
 
 ###
+GET http://localhost:3000/user/
+
+###
 POST http://localhost:3000/records
 Content-Type: application/json
 
 
 {
-  "name": "Initial"
+  "name": "init"
 }
 
 ### 
-GET http://localhost:3000/records/5f8100c5990b934bea47d974
+GET http://localhost:3000/records/5f8d48e3a57c7a2924ae0c71
 
 ###
-PATCH http://localhost:3000/records/5f8100c5990b934bea47d974
+PATCH http://localhost:3000/records/5f8d48e3a57c7a2924ae0c71
 Content-Type: application/json
 
 
@@ -22,8 +25,12 @@ Content-Type: application/json
 }
 
 ### 
-DELETE  http://localhost:3000/records/5f80f6e9a1c18d4497a998aa
+DELETE  http://localhost:3000/records/5f8d48e3a57c7a2924ae0c71
 
+
+###
+
+get http://localhost:3000/user/
 
 ###
 
@@ -31,23 +38,31 @@ POST http://localhost:3000/user/
 Content-Type: application/json
 
 {
-  "email": "yyqq@email.com",
+  "email": "andrew@email.com",
   "password": "ppp"
 }
 
 ###
-GET http://localhost:3000/user/5f814362d38d7458e85e8987
+GET http://localhost:3000/user/5f90bc86175391288044a00c
 
 ###
 
 
-PATCH http://localhost:3000/user/5f814362d38d7458e85e8987
+PATCH http://localhost:3000/user/5f90bc86175391288044a00c
 Content-Type: application/json
 
-{
-  "email": "NEWEMAIL3@qq.com",
-  "password": "xynzeee"
+{ 
+  "password": "katie"
 }
 
 ###
-DELETE http://localhost:3000/user/5f813667a1c18d4497a998ab
+DELETE http://localhost:3000/user/5f908ef72aaecd26ec5a26e2
+
+###
+POST http://localhost:3000/auth/
+Content-Type: application/json
+
+{ 
+  "email": "andrew@email.com",
+  "password": "katie"
+}
