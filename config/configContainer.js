@@ -14,18 +14,21 @@ const authController = require('../api/v1/auth/controller');
 
 const mongoose = require('mongoose');
 const express = require('express');
-const router = express.Router();
 const bcrypt= require('bcryptjs');
-
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const passportJWT = require('passport-jwt');
 
 const container = awilix.createContainer({injectionMode: awilix.InjectionMode.PROXY})
   
 container.register({
   // Dependencies
-  express: awilix.asValue(express),
-  expressRouter: awilix.asValue(router),  
+  express: awilix.asValue(express),  
   mongoose: awilix.asValue(mongoose),
   encrypt: awilix.asValue(bcrypt),
+  passport: awilix.asValue(passport),
+  jwt: awilix.asValue(jwt),
+  passportJWT: awilix.asValue(passportJWT),
   
   // Record
   recordController: awilix.asFunction(recordController),
@@ -39,7 +42,7 @@ container.register({
   userModel: awilix.asFunction(userModel).scoped(),
   userRouter: awilix.asFunction(userRouter),
 
-  // Controller
+  // Auth
   authController: awilix.asFunction(authController),
   authRouter: awilix.asFunction(authRouter),
 })

@@ -16,7 +16,7 @@ switch (process.env.NODE_ENV) {
 const dbAddress = process.env.DB_HOST || "127.0.0.1";
 const dbPort = process.env.DB_PORT || 27017;
 
-// Check these if mongodb deprecation warmings start showing up!
+// Check these if mongoose/mongodb deprecation warmings start showing up!
 const options = { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 
 // Use credentials if provided
