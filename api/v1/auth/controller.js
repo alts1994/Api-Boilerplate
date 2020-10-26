@@ -1,26 +1,29 @@
-module.exports = authController = ({passport, passportJWT, jwt}) =>{
-    const jwtStrategy = passportJWT.Strategy;
-    const extractJwt = passportJWT.ExtractJwt;
-
+module.exports = authController = ({passport, passportLocal, strategies, jwt}) =>{
+    
     const genToken = (email) =>{
-        const token = jwt.sign({email: email}, process.env.JWT_SECRET, {expiresIn: "7d"});
-        return token
+        return  jwt.sign({email: email}, process.env.JWT_SECRET, {expiresIn: "7d"});
     }
 
-    //passport.use("jwt");
+    const LocalStrategy = passportLocal.Strategy;
+    /*const localOpts = {
+        usernameField: 'email',
+        passwordField:"password",
+        session:false, passReqToCallback:true
+    };*/
 
-
-
+    passport.use('local', new LocalStrategy(strategies.localOptions,strategies.local));
 
     return {
-        authenticateUser: async(req,res)=>{
-            try{
-                passwordMatches = await res.user.comparePassword(req.body.password);
-            } catch(err) {
-                return res.status(500).json({message: err.message})
+        authUser: (req, res, next)=>{
+            if(req.body.password.length===0 || req.body.email.length === 0) return res.status(400).json({message: "missing user info"});
+            
+            passport.authenticate('local',(err, user, info) =>{
+                   if(err) return res.status(500).json({message: info});
+                   if(!user) return res.status(400).json({message: info});
+                
+                   return res.status(200).json(genToken(user.email));
+               })(req, res, next);
             }
-            // JWT must be stored in authorization header before proceeding to make any further calls
-            return passwordMatches? res.status(200).json(genToken(user.email)) : res.status(400).json({message: "invalid password"})
-        }
+            
     }
 }

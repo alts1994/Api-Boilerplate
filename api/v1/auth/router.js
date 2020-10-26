@@ -1,7 +1,7 @@
-module.exports = ({ express, userServices, authController }) =>{
+module.exports = ({ express, authController }) =>{
     const router = express.Router();
     
-    router.post('/', userServices.getUserByEmail, authController.authenticateUser);
+    router.post('/', authController.authUser);
     
     return router;
 }

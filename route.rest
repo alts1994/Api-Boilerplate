@@ -1,7 +1,12 @@
+
+
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJld0BlbWFpbC5jb20iLCJpYXQiOjE2MDM2ODk5NDIsImV4cCI6MTYwNDI5NDc0Mn0.Ti0cx9iKGiXtXGpqarnQL146RNKSNAKGzUJ45rHIBiY
 GET http://localhost:3000/records
+Authorization: {{ token }}
 
 ###
 GET http://localhost:3000/user/
+Authorization: {{ token }}
 
 ###
 POST http://localhost:3000/records
@@ -31,14 +36,16 @@ DELETE  http://localhost:3000/records/5f8d48e3a57c7a2924ae0c71
 ###
 
 get http://localhost:3000/user/
+Authorization: {{ token }}
 
 ###
 
 POST http://localhost:3000/user/
+Authorization: {{ token }}
 Content-Type: application/json
 
 {
-  "email": "andrew@email.com",
+  "email": "OkGo@email.com",
   "password": "ppp"
 }
 

@@ -20,7 +20,7 @@ module.exports = userModel = ({ mongoose, encrypt })=>{
          });
     });
     
-    userSchema.methods.comparePassword = function(candidatePassword){
+    userSchema.methods.verifyPassword = function(candidatePassword){
       return encrypt.compareSync(candidatePassword, this.password, (err, res) => {
           if(err){throw err}
           return res
