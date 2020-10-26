@@ -16,22 +16,22 @@ DB connection successful
 ## TechStack
 
 ### Database
-[MongoDB](https://www.mongodb.com/) - a noSQL database 
-[Mongoose](https://mongoosejs.com/) - a javascript framework to provide object modelling for MongoDB
+- [MongoDB](https://www.mongodb.com/) - a noSQL database 
+- [Mongoose](https://mongoosejs.com/) - a javascript framework to provide object modelling for MongoDB
 
 MongoDB + Mongoose provide a flexible, but regulated, base for initial data modelling. In future, [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) also gives us a convenient way to scale up the database without needing to worry about refractoring our database access layer. 
 
 
 ### Server
-[Node.js](https://nodejs.org) - an asynchronous, event driven javascript runtime environment
-[Express](https://expressjs.com/) - a javascript web application framework for Node.js
+- [Node.js](https://nodejs.org) - an asynchronous, event driven javascript runtime environment
+- [Express](https://expressjs.com/) - a javascript web application framework for Node.js
 
 Node + Express are chosen as a base for the server for their reliability. While there are other frameworks with newer feature sets, this combination remains time tested and the support/documentation is generally easy enough to find.
 
 ### Security
-[Awilix](https://github.com/jeffijoe/awilix) - a Dependency Injection Container package for Javascript/Node
-[Passport](http://www.passportjs.org) - a modular authentication middleware
-[JWT](https://github.com/auth0/node-jsonwebtoken) - open, industry standard method for representing claims securely between two parties
+- [Passport](http://www.passportjs.org) - a modular authentication middleware
+- [JWT](https://github.com/auth0/node-jsonwebtoken) - open, industry standard method for representing claims securely between two parties
+- [bCrypt](https://github.com/dcodeIO/bcrypt.js#readme) - a hashing function used to salt and hash sensitive data
 
 
 
@@ -47,8 +47,8 @@ To register a new dependency or reference, you'll need to do some small modifica
 2. Define it within the _Container.register_ function
    1. If you're adding an npm package define it "asValue" eg. `npmPackage: awilix.asValue('npmPackage')`
    2. If you're adding a module, you'll define it either "asClass" or "asFunction" depending how you've exported it eg. `exportedFunction : awilix.asFunction('exportedFunction')` or `exportedClass: awilix.asClass('exportedClass')`
-   3. For anything that needs to be reused (eg. models); chain `.scoped()` or `.singleton()`behind the definition so you only get a single instance throughout the application lifetime. [(read more about lifetime management here)](https://github.com/jeffijoe/awilix#lifetimemanagement)
-   eg. `model : awilix.asFunction('model').scoped()`
+   3. For anything that needs to be kept to a single instance (eg. models); chain `.scoped()` or `.singleton()`behind the definition. [(read more about lifetime management here)](https://github.com/jeffijoe/awilix#lifetimemanagement)
+    eg. `model : awilix.asFunction('model').scoped()`
 
 Specify which dependencies/modules you need injected when you call it in the factory function parameters or in the class constructor 
    ```javascript
