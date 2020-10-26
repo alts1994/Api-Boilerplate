@@ -38,14 +38,9 @@ const authJwt = (callback)=> passport.authenticate("jwt",  { session: false, fai
     })(req, res, next);
 });
 
-const recordRouter = container.resolve('recordRouter')
-app.use('/records', recordRouter);
-
-const userRouter = container.resolve('userRouter')
-app.use('/user', userRouter);
-
-const authRouter = container.resolve('authRouter');
-app.use('/auth', authRouter);
+app.use('/records', container.resolve('recordRouter'));
+app.use('/user', container.resolve('userRouter'));
+app.use('/auth', container.resolve('authRouter'));
 
 
 module.exports = app;
