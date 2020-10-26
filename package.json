@@ -1,10 +1,9 @@
 {
-  "name": "crud-server",
+  "name": "Express IoC API Boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple Node-Express-MongoDB boilerplate that utilizes Awilix for dependency injection.",
   "main": "server.js",
   "scripts": {
-    "test": "",
     "dev": "nodemon server.js"
   },
   "author": "",
