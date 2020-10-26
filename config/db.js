@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 let dbName;
 switch (process.env.NODE_ENV) {
     case "test":
-        dbName = "testdb";
+        dbName = process.env.testDb || "testdb";
         break;
     case "production":
-        dbName = "proddb";
+        dbName = process.env.prodDb || "proddb";
         break;
     default:
-        dbName = "devdb";
+        dbName = process.env.devDb ||"devdb";
 }
 
 // Assume default mongoDB local port and host if none provided
