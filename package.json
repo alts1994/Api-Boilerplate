@@ -1,5 +1,5 @@
 {
-  "name": "Express IoC API Boilerplate",
+  "name": "IoC API Boilerplate",
   "version": "1.0.0",
   "description": "A simple Node-Express-MongoDB boilerplate that utilizes Awilix for dependency injection.",
   "main": "server.js",
@@ -7,7 +7,7 @@
     "dev": "nodemon server.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "awilix": "^4.2.6",
     "bcryptjs": "^2.4.3",
